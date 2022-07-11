@@ -21,34 +21,34 @@ public class DefaultUser {
 
     @PostConstruct
     private void initialize(){
-        Role role1 = new Role("ROLE_ADMIN");
-        Role role2 = new Role("ROLE_USER");
-        roleService.saveRole(role1);
-        roleService.saveRole(role2);
+        Role roleAdmin = new Role("ROLE_ADMIN");
+        Role roleUser = new Role("ROLE_USER");
+        roleService.saveRole(roleAdmin);
+        roleService.saveRole(roleUser);
 
 
-        User user1 = new User();
-        user1.setAge(23);
-        user1.setFistName("Nicole");
-        user1.setLastName("Shein");
-        user1.setEmail("Nicole@gmail.com");
-        user1.setUsername("Nicole");
-        user1.setPassword("TimBurton666");
+        User admin = new User();
+        admin.setAge(23);
+        admin.setFistName("Nicole");
+        admin.setLastName("Shein");
+        admin.setEmail("Nicole@gmail.com");
+        admin.setUsername("Nicole");
+        admin.setPassword("TimBurton666");
 
-        user1.addRole(role1);
+        admin.addRole(roleAdmin);
 
 
-        User user2 = new User();
-        user2.setFistName("user");
-        user2.setLastName("user");
-        user2.setEmail("user@gmail.com");
-        user2.setAge(1);
-        user2.setUsername("user");
-        user2.setPassword("user");
-        user2.addRole(role2);
+        User user = new User();
+        user.setFistName("user");
+        user.setLastName("user");
+        user.setEmail("user@gmail.com");
+        user.setAge(1);
+        user.setUsername("user");
+        user.setPassword("user");
+        user.addRole(roleUser);
 
-        userService.add(user1);
-        userService.add(user2);
+        userService.add(admin);
+        userService.add(user);
 
 
     }
