@@ -48,13 +48,10 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(User user, Long id) {
-        User userFromDb = userDao.getUserById(id);
-        userFromDb.setRoles(user.getRoles());
-        if (user.getPassword() != null && !user.getPassword().trim().equals("")) {
-            userFromDb.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        }
-
-        userDao.update(userFromDb);
+        user.setId(id);
+        user.setPassword(user.getPassword() != null && !user.getPassword().trim().equals("") ? bCryptPasswordEncoder.encode(user.getPassword()) : userDao.getUserById(id).getPassword());
+        user.setUsername(userDao.getUserById(id).getUsername());
+        userDao.update(user);
     }
 
     @Transactional
