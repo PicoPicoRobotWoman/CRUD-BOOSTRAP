@@ -36,7 +36,7 @@ public class DefaultUser {
         admin.setPassword("TimBurton666");
 
         admin.addRole(roleAdmin);
-
+        admin.addRole(roleUser);
 
         User user = new User();
         user.setFistName("user");

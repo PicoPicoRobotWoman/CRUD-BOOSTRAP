@@ -4,12 +4,14 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SQLDelete;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @Data
 @AllArgsConstructor
@@ -56,12 +58,9 @@ public class User implements UserDetails {
         roles.add(role);
     }
 
-    public String roles() {
-        String[] res = new String[] { "" };
-        getRoles().forEach(role -> res[0] += role.getName() + ", ");
-        return res[0];
+    public List<String> sRoles() {
+        return RoleConverter.roleToString(this.getRoles().stream().toList());
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
